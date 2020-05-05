@@ -1,0 +1,14 @@
+<ng-container *ngIf="error; then thenError; else elseNoError"></ng-container>
+<ng-template #thenError>
+  Failed to load transaction <button (click)="loadTransaction()" mat-raised-button color="accent">Try again</button>
+</ng-template>
+<ng-template #elseNoError>
+  <ng-container *ngIf="loading; then thenTemplate; else elseTemplate"></ng-container>
+  <ng-template #thenTemplate>
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </ng-template>
+  <ng-template #elseTemplate>
+    <p>{{transaction.Description}}</p>
+    <p>{{showDate(transaction.EffectiveDate)}}</p>
+  </ng-template>
+</ng-template>

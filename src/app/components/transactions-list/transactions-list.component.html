@@ -1,0 +1,27 @@
+<ng-container *ngIf="error; then thenError; else elseNoError"></ng-container>
+<ng-template #thenError>
+  Failed to load transactions <button (click)="loadTransactions()" mat-raised-button color="warn">Try again</button>
+</ng-template>
+<ng-template #elseNoError>
+  <ng-container *ngIf="loading; then thenTemplate; else elseTemplate"></ng-container>
+  <ng-template #thenTemplate>
+    <mat-spinner [diameter]="150"></mat-spinner>
+  </ng-template>
+  <ng-template #elseTemplate>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let transaction of transactions">
+        <mat-expansion-panel-header [ngClass]="[transaction.Type, 'header']">
+          <mat-panel-title>
+            {{transaction.Type}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{transaction.Amount}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <app-transactions-item [id]="transaction.ID"></app-transactions-item>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-template>
+</ng-template>
