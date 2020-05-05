@@ -5,7 +5,7 @@ import { Transaction } from 'src/app/interfaces/transaction.interface';
 @Component({
   selector: 'app-transactions-item',
   templateUrl: './transactions-item.component.html',
-  styleUrls: ['./transactions-item.component.sass']
+  styleUrls: ['./transactions-item.component.scss']
 })
 export class TransactionsItemComponent implements OnInit {
   @Input() id: string;
